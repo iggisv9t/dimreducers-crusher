@@ -34,4 +34,4 @@ class TrimapReducer(BaseReducer):
         self.reducer.fit(X)
 
     def transform(self, X):
-        self.reducer.fit_transform(X)
+        return self.reducer.transform(X)
