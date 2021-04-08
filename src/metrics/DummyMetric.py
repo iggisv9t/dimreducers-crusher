@@ -8,7 +8,7 @@ class DummyMetric(AbstractMetric):
         super().__init__(random_state)
 
     def score(self, x: np.ndarray, x_reduced: np.ndarray,
-              y: Optional[np.ndarray] = None, **kwargs) -> Union[float, np.ndarray]:
+              y: Optional[np.ndarray] = None, distances: bool = False, **kwargs) -> Union[float, np.ndarray]:
         return 1
 
     def set_random_state(self, random_state: int = 0):
