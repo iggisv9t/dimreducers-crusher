@@ -1,0 +1,72 @@
+import numpy as np
+from dimreducers_crusher.reducers import NCVis
+import time
+
+
+def test_distances():
+    np.random.seed(42)
+    X = np.random.random((5, 3))
+    distances = ['euclidean', 'cosine', 'correlation', 'inner_product']
+    for distance in distances:
+        vis = NCVis(d=2, random_state=42, n_neighbors=15, M=16,
+                    ef_construction=200, n_init_epochs=20, n_epochs=50,
+                    min_dist=0.4, n_threads=-1, distance=distance)
+        Y = vis.transform(X)
+        all_finite = np.all(np.isfinite(Y))
+        print("Distance:", distance)
+        print("Input:")
+        print(X)
+        print("Output:")
+        print(Y)
+        assert all_finite, "All entries must be finite"
+
+
+def test_parallel():
+    np.random.seed(42)
+    X = np.random.random((10**3, 10))
+    distances = ['euclidean', 'cosine', 'correlation', 'inner_product']
+    n_threads = [1, 2]
+    for distance in distances:
+        print("Distance:", distance)
+        times = {}
+        for n_th in n_threads:
+            vis = NCVis(d=2, random_state=42, n_neighbors=15, M=16,
+                        ef_construction=200, n_init_epochs=20, n_epochs=50,
+                        min_dist=0.4, n_threads=n_th, distance=distance)
+            start = time.time()
+            _ = vis.transform(X)
+            stop = time.time()
+            times[n_th] = stop-start
+
+            print("n_threads = {}, time = {:.2f}s".format(n_th, times[n_th]))
+            if n_th > 1:
+                eff = times[1]/(times[n_th]*n_th)
+                assert eff > 0.3, "Parallelization efficiency is too low"
+
+
+def test_1d_clustering():
+    np.random.seed(42)
+    n = 50
+    X = np.concatenate((np.random.normal(-1, 1.5, (n, 1)),
+                        np.random.normal(1, 1.5, (n, 1))))
+
+    vis = NCVis(d=1, random_state=42, n_neighbors=15, M=16,
+                ef_construction=200, n_init_epochs=20, n_epochs=50,
+                min_dist=0.4, n_threads=-1, distance="euclidean")
+    Y = vis.transform(X).ravel()
+    n_pos = np.count_nonzero(Y-Y.mean() > 0)
+    assert np.abs(n_pos - n) < 5, "Clustering quality is too poor"
+
+
+def test_1d_tsne():
+    np.random.seed(42)
+    n = 50
+    X = np.concatenate((np.random.normal(-1, 1.5, (n, 1)),
+                        np.random.normal(1, 1.5, (n, 1))))
+
+    vis = NCVis(d=1, random_state=42, n_neighbors=15, M=16,
+                ef_construction=200, n_init_epochs=20, n_epochs=50,
+                a=1, b=1, n_threads=-1, distance="euclidean")
+    Y = vis.transform(X).ravel()
+    n_pos = np.count_nonzero(Y-Y.mean() > 0)
+    assert np.abs(n_pos - n) < 5, "Clustering quality is too poor"
