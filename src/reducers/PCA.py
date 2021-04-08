@@ -29,3 +29,7 @@ class PCA(AbstractReducer):
     def is_stateful(self) -> bool:
         return True
 
+    @staticmethod
+    def get_parameter_ranges() -> dict:
+        return {'whiten': (bool, False)}
+

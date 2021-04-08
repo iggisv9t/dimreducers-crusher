@@ -26,3 +26,7 @@ class DummyReducer(AbstractReducer):
     def is_stateful(self) -> bool:
         return False
 
+    @staticmethod
+    def get_parameter_ranges() -> dict:
+        return {}
+

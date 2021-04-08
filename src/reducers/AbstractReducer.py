@@ -34,3 +34,8 @@ class AbstractReducer(ABC):
     @abstractmethod
     def is_stateful(self) -> bool:
         return False
+
+    @staticmethod
+    @abstractmethod
+    def get_parameter_ranges() -> dict:
+        return {}

@@ -28,3 +28,10 @@ class UMAP(AbstractReducer):
     @property
     def is_stateful(self) -> bool:
         return True
+
+    @staticmethod
+    def get_parameter_ranges() -> dict:
+        return {
+            'n_neighbors': (int, 2, 300),
+            'min_dist': (float, 0, 1)
+        }
