@@ -11,7 +11,9 @@ class AbstractMetric(ABC):
 
     @abstractmethod  # TODO: should this also be @staticmethod?
     def score(self, x: np.ndarray, x_reduced: np.ndarray,
-              y: Optional[np.ndarray], distances: bool = False, **kwargs) -> Union[float, np.ndarray]:
+              y: Optional[np.ndarray], distances: bool = False,
+              **kwargs
+              ) -> Union[float, np.ndarray]:
         pass
 
     @abstractmethod
