@@ -1,3 +1,6 @@
 from .AbstractDataset import AbstractDataset
 from .AbstractDatasetGenerator import AbstractDatasetGenerator
 from .RandomUniformDatasetGenerator import RandomUniformDatasetGenerator
+from .FashionMNISTDataset import FashionMNISTDataset
+from .RPPADataset import RPPADataset
+from .TwentyNewsgroups import TwentyNewsgroups

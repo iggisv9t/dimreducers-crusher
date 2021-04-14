@@ -29,6 +29,9 @@ def main(dataset_name, metric_name, reducer_name):
     metric_value = metric.score(data, data_reduced)
     print(metric_value)
 
+    # TODO: Add plotter
+    # TODO: Add json report
+
 
 if __name__ == '__main__':
     main()
