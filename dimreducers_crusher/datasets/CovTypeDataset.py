@@ -3,6 +3,7 @@ import numpy as np
 from AbstractDataset import AbstractDataset 
 from sklearn.datasets import fetch_covtype
 
+# shape: (581012, 54) 
 
 class CovTypeDataset(AbstractDataset):
 
