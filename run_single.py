@@ -1,5 +1,7 @@
+import os
+import time
 import click
-from dimreducers_crusher import datasets, metrics, reducers
+from dimreducers_crusher import datasets, metrics, reducers, plotters
 from dimreducers_crusher.utils.py_utils import get_registry
 
 
@@ -9,13 +11,13 @@ REDUCER_REGISTRY = get_registry(reducers)
 
 
 @click.command()
-@click.argument('dataset_name', type=click.Choice(DATASET_REGISTRY))
-@click.argument('metric_name', type=click.Choice(METRIC_REGISTRY))
-@click.argument('reducer_name', type=click.Choice(REDUCER_REGISTRY))
+@click.argument("dataset_name", type=click.Choice(DATASET_REGISTRY))
+@click.argument("metric_name", type=click.Choice(METRIC_REGISTRY))
+@click.argument("reducer_name", type=click.Choice(REDUCER_REGISTRY))
 def main(dataset_name, metric_name, reducer_name):
-    print('====================')
-    print('=====DIMCRUSHER=====')
-    print('====================')
+    print("====================")
+    print("=====DIMCRUSHER=====")
+    print("====================")
 
     datagen = DATASET_REGISTRY[dataset_name]()
     data = datagen.get(1000, 10)
@@ -29,9 +31,16 @@ def main(dataset_name, metric_name, reducer_name):
     metric_value = metric.score(data, data_reduced)
     print(metric_value)
 
-    # TODO: Add plotter
+    # Plotter
+    p = plotters.DefaultPlotter()
+    os.makedirs("./pics", exist_ok=True)
+    now = time.strftime("%y%m%d_%H%M%S")
+    savepath = "./pics/{}_{}_{}.png".format(dataset_name, reducer_name, now)
+    p.plot(
+        data_reduced, savepath
+    )
     # TODO: Add json report
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
