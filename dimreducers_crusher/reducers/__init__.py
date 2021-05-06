@@ -12,3 +12,6 @@ from .Chalmer import Chalmer
 from .SpringForce import SpringForce
 from .ForceHybrid import ForceHybrid
 from .ForcePivot import ForcePivot
+from .GTM import GTM
+from .FastICA import FastICA
+from .LaplacianEigenmaps import LaplacianEigenmaps
