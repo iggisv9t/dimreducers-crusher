@@ -6,3 +6,17 @@ from .NCVis import NCVis
 from .Isomap import Isomap
 from .LLE import LLE
 from .MDS import MDS
+from .DiffusionMap import DiffusionMap
+from .FA import FA
+from .Chalmer import Chalmer
+from .SpringForce import SpringForce
+from .ForceHybrid import ForceHybrid
+from .ForcePivot import ForcePivot
+from .GTM import GTM
+from .FastICA import FastICA
+from .LaplacianEigenmaps import LaplacianEigenmaps
+from .H_LLE import H_LLE
+from .M_LLE import M_LLE
+from .LTSA_LLE import LTSA_LLE
+from .LPP import LPP
+from .N_MDS import N_MDS
