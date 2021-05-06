@@ -15,3 +15,8 @@ from .ForcePivot import ForcePivot
 from .GTM import GTM
 from .FastICA import FastICA
 from .LaplacianEigenmaps import LaplacianEigenmaps
+from .H_LLE import H_LLE
+from .M_LLE import M_LLE
+from .LTSA_LLE import LTSA_LLE
+from .LPP import LPP
+from .N_MDS import N_MDS

@@ -9,3 +9,4 @@ ncvis~=1.5.9
 pyDiffMap~=0.2.0.1
 forcelayout~=1.0.6
 ugtm~=2.1.0
+lpproj~=0.1
