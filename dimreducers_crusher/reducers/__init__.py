@@ -20,3 +20,9 @@ from .M_LLE import M_LLE
 from .LTSA_LLE import LTSA_LLE
 from .LPP import LPP
 from .N_MDS import N_MDS
+from .NMF import NMF
+from .IPCA import IPCA
+from .K_PCA_P import K_PCA_P
+from .K_PCA_R import K_PCA_R
+from .K_PCA_S import K_PCA_S
+from .SparsePCA import SparsePCA
