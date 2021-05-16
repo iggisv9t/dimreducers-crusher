@@ -26,3 +26,7 @@ from .K_PCA_P import K_PCA_P
 from .K_PCA_R import K_PCA_R
 from .K_PCA_S import K_PCA_S
 from .SparsePCA import SparsePCA
+from .GRP import GRP
+from .SRP import SRP
+from .TSNE import TSNE
+from .TSVD import TSVD
