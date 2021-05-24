@@ -17,10 +17,10 @@ class FashionMNISTDataset(AbstractDataset):
         try:
             train = torchvision.datasets.FashionMNIST(data_dir, download = True)
             X = train.data.numpy().reshape(-1, 28 * 28)
-            return sps.csr_matrix(X)
+            return X
         except:
             raise RuntimeError
 
     @property
     def is_sparse(self) -> bool:
-        return True
+        return False
