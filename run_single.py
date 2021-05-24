@@ -12,10 +12,11 @@ REDUCER_REGISTRY = get_registry(reducers)
 
 
 @click.command()
-@click.argument("dataset_name", type=click.Choice(DATASET_REGISTRY))
-@click.argument("metric_name", type=click.Choice(METRIC_REGISTRY))
-@click.argument("reducer_name", type=click.Choice(REDUCER_REGISTRY))
+@click.option("--dataset-name", type=click.Choice(DATASET_REGISTRY))
+@click.option("--metric-name", type=click.Choice(METRIC_REGISTRY), multiple=True)
+@click.option("--reducer-name", type=click.Choice(REDUCER_REGISTRY))
 def main(dataset_name, metric_name, reducer_name):
+    print('---{}'.format(metric_name))
     now = time.strftime("%y%m%d_%H%M%S")
     report = dict()
     picsdir = "./pics"
@@ -33,10 +34,11 @@ def main(dataset_name, metric_name, reducer_name):
     print(data_reduced.shape, data_reduced.min(), data_reduced.max())
 
     # TODO: Allow multiple metrics
-    metric = METRIC_REGISTRY[metric_name]()
-    metric_value = metric.score(data, data_reduced)
-    print(metric_value)
-    metric_report = {metric_name: metric_value}
+    for mn in metric_name:
+        metric = METRIC_REGISTRY[mn]()
+        metric_value = metric.score(data, data_reduced)
+        print(metric_value)
+        metric_report = {mn: metric_value}
 
     # Plotter
     # TODO: Allow multiple plotters
