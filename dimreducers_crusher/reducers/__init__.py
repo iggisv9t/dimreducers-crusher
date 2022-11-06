@@ -6,7 +6,7 @@ from .NCVis import NCVis
 from .Isomap import Isomap
 from .LLE import LLE
 from .MDS import MDS
-from .DiffusionMap import DiffusionMap
+# from .DiffusionMap import DiffusionMap
 from .FA import FA
 from .Chalmer import Chalmer
 from .SpringForce import SpringForce

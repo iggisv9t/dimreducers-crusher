@@ -26,7 +26,7 @@ def main(dataset_name, metric_name, reducer_name):
     print("====================")
 
     datagen = DATASET_REGISTRY[dataset_name]()
-    data = datagen.get(1000, 10)
+    data = datagen.get(n=10000, d=10)
     print(data.shape, data.min(), data.max())
 
     reducer = REDUCER_REGISTRY[reducer_name]()
